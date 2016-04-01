@@ -11,11 +11,13 @@ RUN echo "deb http://llvm.org/apt/trusty/ llvm-toolchain-trusty main" >> /etc/ap
     sudo apt-get install build-essential -y && \
     wget https://cmake.org/files/v3.4/cmake-3.4.3.tar.gz && \
     tar xf cmake-3.4.3.tar.gz && \
+    rm -rf cmake-3.4.3.tar.gz && \
     cd cmake-3.4.3 && \
     ./configure && \
     make && \
     sudo make install && \
-    sudo apt-get install -y clang-3.8 lldb-3.8 libc++-dev libc++abi-dev && \
+    cd .. && rm -rf cmake-3.4.3 && \
+    sudo apt-get install -y clang-3.8 lldb-3.8 libc++-dev libc++abi-dev libsdl2-dev && \
     sudo update-alternatives --install /usr/bin/cc cc /usr/bin/clang-3.8 100 && \
     sudo update-alternatives --install /usr/bin/c++ c++ /usr/bin/clang++-3.8 100 &&  \
     apt-get autoremove -y
